@@ -1,0 +1,23 @@
+{% load static %}
+                                                    {% for i in Product_Category %} 
+                                                    <div class="droopmenu-tabsection droopmenu-tab-active" id="droopmenutab10">
+                                                        <a class="droopmenu-tabheader" href="#"> {{i.name}} </a>
+                                                        <div class="droopmenu-tabcontent">
+                                                            <div class="droopmenu-row">
+                                                                {% for j in i.Product_Category_2.all %}
+                                                                <ul class="droopmenu-col droopmenu-col4">
+                                                                    
+                                                                    <li><h4>{{j.name}}</h4></li>
+                                                                    {% for k in j.Child1_detail_category.all %}
+                                                                    <li><a href="./products.html">{{k.name}}</a></li>
+
+                                                                    {% endfor %}
+                                                                </ul>
+                                                                {% endfor %}
+                                                                <ul class="droopmenu-col droopmenu-col4 d-none d-lg-inline-block">
+                                                                    <li><img src="{% static 'front/assets/images/megamenu/megamenu-image1.png' %}" alt=""></li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                     {% endfor %} 

@@ -1,0 +1,568 @@
+{% load static %}
+{% load humanize %}
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>  </title>
+    <!-- CSS Styles -->
+    <link rel="stylesheet" href="{% static 'front/assets/css/bootstrap.rtl.min.css' %}">
+    <link rel="stylesheet" href="{% static 'front/assets/plugins/fontawesome/css/all.min.css' %}">
+    <link rel="stylesheet" href="{% static 'front/assets/plugins/aos-master/dist/aos.css' %}">
+    <link rel="stylesheet" href="{% static 'front/assets/plugins/hover-master/css/hover-min.css' %}">
+    <link rel="stylesheet" href="{% static 'front/assets/css/ionicons.css' %}">
+    <link rel="stylesheet" href="{% static 'front/assets/css/droopmenu.css' %}">
+    <link rel="stylesheet" href="{% static 'front/assets/css/highlight.css' %}">
+    <link rel="stylesheet" href="{% static 'front/assets/css/nouislider.min.css' %}">
+    <link rel="stylesheet" href="{% static 'front/assets/css/style.css' %}">
+    <!-- /CSS Styles -->
+</head>
+<body>
+<!-- Header -->
+<section id="header">
+{% if messages %}
+{% for message in messages %}
+<div class="alert alert-info" role="alert">
+    {{message}}
+</div>
+{% endfor %}
+{% endif %}  
+    <!-- Top NavBar -->
+    {% block topheader %}
+    {% include 'front/top_header.html' %}
+    {% endblock topheader %}
+    <!-- /Top NavBar -->
+    <!-- Search NavBar -->
+    {% block searchnav %}
+    {% include 'front/searchnav.html' %}
+    {% endblock searchnav %}
+    <!-- /Search NavBar -->
+    <!-- Main NavBar -->
+    {% block mainmenu %}
+    {% include 'front/mainmenu.html' %}
+    {% endblock mainmenu %}
+
+<!-- Slider Section -->
+<section id="slider" class="mt-3">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-md-9" data-aos="fade-zoom-in" data-aos-duration="700">
+                <div id="carouselExampleCaptions" class="carousel slide carousel-fade" data-bs-ride="carousel">
+                    <div class="carousel-indicators">
+                        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+
+                        {% for i in len_slider %}
+                        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="{{i}}" class="active" aria-current="true" aria-label="Slide {{i}}"></button>
+                        {% endfor %}
+                    </div>
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img src="{% static 'front/assets/images/slider/slide1.jpg' %}" class="d-block" alt="...">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="{% static 'front/assets/images/slider/slide2.jpg' %}" class="d-block" alt="...">
+                        </div>
+                        {% for i in slider %}
+                        <div class="carousel-item">
+                            <img src="{{i.picture.url}}" class="d-block" alt="...">
+                        </div>
+                        {% endfor %}
+                        
+                        
+            
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+            </div>
+            <div class="col-12 col-md-3 mt-2 mt-sm-1 text-center text-sm-start" id="slider-side-banners">
+                <div class="row row-cols-1 row-cols-sm-3 row-cols-md-1 h-100 gy-2 g-sm-1 g-md-0">
+                    <div class="col align-self-start" data-aos="fade-top" data-aos-duration="1000">
+                        <a href="./products.html">
+                            <img src="{% static 'front/assets/images/slider/side-slide1.jpg' %}" alt="" width="100%">
+                        </a>
+                    </div>
+                    <div class="col align-self-center" data-aos="fade-top" data-aos-duration="1100">
+                        <a href="./products.html">
+                            <img src="{% static 'front/assets/images/slider/side-slide2.jpg' %}" alt="" width="100%">
+                        </a>
+                    </div>
+                    <div class="col align-self-end" data-aos="fade-top" data-aos-duration="1200">
+                        <a href="./products.html">
+                            <img src="{% static 'front/assets/images/slider/side-slide3.jpg' %}" alt="" width="100%">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- /Slider Section -->
+
+<!-- Featured Products Section -->
+<section id="featured-products" class="my-5">
+    <div class="container">
+        <!-- Tabs -->
+        <div class="row pb-2 pb-sm-4">
+            <div class="col-12 text-center">
+                <div class="btn-group" role="group" id="featured-products-nav">
+                    <button type="button" class="btn active featured-categories" data-val="featured">محصولات منتخب</button>
+                    <button type="button" class="btn featured-categories" data-val="on-sale">تخفیف خورده</button>
+                    <button type="button" class="btn featured-categories" data-val="most-visited">پربازدیدترین</button>
+                </div>
+            </div>
+        </div>
+        <!-- /Tabs -->
+
+        <!-- Products -->
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-4 g-md-4 featured-product featured" data-aos="fade-up" data-aos-duration="1000">
+            {% for  i in products_featured %}
+            <div class="col">
+                <!-- Product Box -->
+                <div class="col">
+                    <!-- Product Box -->
+                    <div class="product-box">
+                        <a href="{{i.get_absolute_url}}"><div class="image" style="background-image: url('{{i.picture1.url}}')"></div></a>
+                        <div class="icons">
+                            <div class="btn btn-outline-secondary btn-favorite"></div>
+                            <div class="btn btn-outline-secondary btn-compare"></div>
+                        </div>
+                        <div class="details p-3">
+                            <div class="category">
+                                <a href="{% url 'PRODUCT:show_product_base_category' i.category.slug %}"> {{i.category}}</a>
+                                &nbsp;/&nbsp;
+                                <a href="{% url 'PRODUCT:show_total_detail_category_product' i.Detail_category1.slug %}">{{i.Detail_category1}}</a>
+                            </div>
+                            <a href="{{i.get_absolute_url}}"><h2> {{i.name}} </h2></a>
+                            <div class="price">{{i.price | intword }} تومان</div>
+                            <div class="rate">
+                                <i class="fa fa-star-half-alt"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <span class="reviews">(14 رای دهنده)</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /Product Box -->
+                </div>
+                <!-- /Product Box -->
+            </div>
+            {% endfor %}
+            
+                <!-- /Product Box -->
+            </div>
+   
+        </div>
+
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-4 g-md-4 featured-product on-sale">
+            {% for i in on_sale %}
+                {% if i.price2 != 0 %}
+                <div class="col">
+                    <!-- Product Box -->
+
+                    <div class="product-box">
+                        <a href="{{i.get_absolute_url}}">
+                            <div class="image" style="background-image: url('{% static 'front/assets/images/products/p303.png' %}')">
+                                <span class="badge on-sale-badge">فروش ویژه</span>
+                            </div>
+                        </a>
+                        <div class="details p-3">
+                            <div class="category">
+                                <a href="{% url 'PRODUCT:show_product_base_category' i.category.slug %}"> {{i.category}}</a>
+                                &nbsp;/&nbsp;
+                                <a href="{% url 'PRODUCT:show_total_detail_category_product' i.Detail_category1.slug %}">{{i.Detail_category1}}</a>
+                            </div>
+                            <a href="{{i.get_absolute_url}}"><h2> {{i.name}}</h2></a>
+                            <div>
+                                <span class="discounted">{{i.price|intword}} تومان</span>
+                                <br class="d-sm-none">
+                                <span class="price">{{i.price2|intword}}</span>
+                            </div>
+                            <div class="rate">
+                                <i class="fa fa-star-half-alt"></i>
+                                {% with ''|center:"{{ i.marks }}" as range %}
+                                {% for _ in range %}
+                                    <i class="fa fa-star">_</i>
+                                {% endfor %}
+                                {% endwith %}
+                                <span class="reviews">(14 رای دهنده)</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /Product Box -->
+                </div>
+                {% endif %}
+
+
+                {% empty %}
+            {% endfor %}
+
+ 
+            
+        </div>
+
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-4 g-md-4 featured-product most-visited">
+            {% for i in most_visited %}
+            <div class="col">
+                <!-- Product Box -->
+                <div class="product-box">
+                    <a href="{{i.get_absolute_url}}"><div class="image" style="background-image: url('{{i.picture1.url}}')"></div></a>
+                    <div class="icons">
+                        <div class="btn btn-outline-secondary btn-favorite"></div>
+                        <div class="btn btn-outline-secondary btn-compare"></div>
+                    </div>
+                    <div class="details p-3">
+                        <div class="category">
+                            <a href="{% url 'PRODUCT:show_product_base_category' i.category.slug %}"> {{i.category}}</a>
+                            &nbsp;/&nbsp;
+                            <a href="{% url 'PRODUCT:show_total_detail_category_product' i.Detail_category1.slug %}">{{i.Detail_category1}}</a>
+                        </div>
+                        <a href="{{i.get_absolute_url}}"><h2> {{i.name}}</h2></a>
+                        <a href="{{i.get_absolute_url}}"><h2>   </h2></a>
+                        <div class="price">{{i.price|intword}} تومان</div>
+                        <div class="rate">
+                            <i class="fa fa-star-half-alt"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <span class="reviews">(14 رای دهنده)</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- /Product Box -->
+            </div>
+            {% endfor %}
+            
+            
+            
+            
+        </div>
+        <!-- /Products -->
+    </div>
+</section>
+<!-- /Featured Products Section -->
+
+<!-- On Sale Products -->
+<section id="on-sale-products" class="py-5 mt-5">
+    <h1 class="section-title">فروش ویژه</h1>
+    <div class="section-subtitle">محصولات دارای تخفیف ویژه به مدت محدود</div>
+    <div class="container pt-4">
+        <div class="row">
+            <div class="col-12 col-lg-6">
+                <div class="on-sale-product-box h-100 p-3" data-aos="fade-zoom-in" data-aos-duration="800">
+                    <div class="row h-100">
+                        <div class="col-12 col-sm-4 col-lg-5">
+                            <a href="./product.html"><div class="image h-100" style="background-image: url('assets/images/products/p1000.png')"></div></a>
+                        </div>
+                        <div class="col-12 col-sm-8 col-lg-7 py-3">
+                            <div class="box-title">محصول ویژه امروز</div>
+                            <div class="box-subtitle">فروش به مدت محدود</div>
+                            <a href="./product.html">
+                                <div class="product-title pt-4">گوشی موبایل سامسونگ مدل Galaxy A51 دو سیم کارت</div>
+                            </a>
+                            <div class="price py-2">
+                                <span class="discounted">4.500.000 تومان</span>
+                                <br class="d-sm-none">
+                                <span class="pre">4.800.000 تومان</span>
+                            </div>
+                            <div class="cta pt-2">
+                                <a href="./product.html" class="hvr-icon-back">همین حالا بخرید <i class="fa fa-arrow-left hvr-icon"></i></a>
+                            </div>
+                            <div class="counter mt-3">
+                                <div class="time-counter">
+                                    <div class="seconds count">
+                                        <div class="num">30</div>
+                                        <div class="label">ثانیه</div>
+                                    </div>
+                                    <div class="minutes count">
+                                        <div class="num">59</div>
+                                        <div class="label">دقیقه</div>
+                                    </div>
+                                    <div class="hours count">
+                                        <div class="num">13</div>
+                                        <div class="label">ساعت</div>
+                                    </div>
+                                    <div class="days count">
+                                        <div class="num">38</div>
+                                        <div class="label">روز</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-sm-6 col-lg-3">
+                <!-- Product Box -->
+                <div class="product-box">
+                    <a href="./product.html">
+                        <div class="image" style="background-image: url('{% static 'ftont/assets/images/products/p303.png' %})">
+                            <span class="badge on-sale-badge">فروش ویژه</span>
+                        </div>
+                    </a>
+                    <div class="details p-3">
+                        <div class="category">
+                            <a href="./products.html">گوشی موبایل</a>
+                            &nbsp;/&nbsp;
+                            <a href="./products.html">سامسونگ</a>
+                        </div>
+                        <a href="./product.html"><h2>مودم روتر ADSL2 Plus بی‌ سیم N300 دی-لینک مدل DSL-2740U</h2></a>
+                        <div>
+                            <span class="discounted">4.500.000 تومان</span>
+                            <br class="d-sm-none">
+                            <span class="price">4.800.000 تومان</span>
+                        </div>
+                        <div class="rate">
+                            <i class="fa fa-star-half-alt"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <span class="reviews">(14 رای دهنده)</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- /Product Box -->
+            </div>
+            <div class="col-12 col-sm-6 col-lg-3">
+                <!-- Product Box -->
+                <div class="product-box">
+                    <a href="./product.html">
+                        <div class="image" style="background-image: url('{% static 'front/assets/images/products/p403.png' %})">
+                            <span class="badge on-sale-badge">فروش ویژه</span>
+                        </div>
+                    </a>
+                    <div class="details p-3">
+                        <div class="category">
+                            <a href="./products.html">گوشی موبایل</a>
+                            &nbsp;/&nbsp;
+                            <a href="./products.html">سامسونگ</a>
+                        </div>
+                        <a href="./product.html"><h2>دوربین دیجیتال مدل AX6065</h2></a>
+                        <div>
+                            <span class="discounted">4.500.000 تومان</span>
+                            <br class="d-sm-none">
+                            <span class="price">4.800.000 تومان</span>
+                        </div>
+                        <div class="rate">
+                            <i class="fa fa-star-half-alt"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <span class="reviews">(14 رای دهنده)</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- /Product Box -->
+            </div>
+        </div>
+    </div>
+</section>
+<!-- /On Sale Products -->
+
+<!-- Benefits Section -->
+<section id="benefits" class="pt-4">
+    <div class="container">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-4 gy-3 text-center">
+            <div class="col" data-aos="fade-zoom-in" data-aos-duration="800">
+                <img src="{% static 'front/assets/images/benefits/benefit1.png' %}" alt="">
+                <span>پشتیبانی 24 ساعته</span>
+            </div>
+            <div class="col" data-aos="fade-zoom-in" data-aos-duration="1000">
+                <img src="{% static 'front/assets/images/benefits/benefit2.png' %}" alt="">
+                <span>ضمانت اصالت کالا</span>
+            </div>
+            <div class="col" data-aos="fade-zoom-in" data-aos-duration="1200">
+                <img src="{% static 'front/assets/images/benefits/benefit3.png' %}" alt="">
+                <span>ضمانت بازگشت وجه</span>
+            </div>
+            <div class="col" data-aos="fade-zoom-in" data-aos-duration="1400">
+                <img src="{% static 'front/assets/images/benefits/benefit4.png' %}" alt="">
+                <span>ارسال سریع و رایگان</span>
+            </div>
+        </div>
+        <div class="row pt-2">
+            <div class="col">
+                <hr>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- /Benefits Section -->
+
+<!-- Most Sales Products -->
+<section id="most-sales-products" class="pt-4">
+    <h1 class="section-title">پرفروش ترین محصولات</h1>
+    <div class="container pt-4">
+        <!-- Tabs -->
+        <div class="row pb-2 pb-sm-4">
+            <div class="col-12 text-center">
+                <div class="btn-group" role="group" id="most-sales-products-nav">
+                    {% for i in product_category %}
+
+                    <button type="button" class="btn active most-sales-categories" data-val="{{i.name}}"> {{i.name}}</button>
+                    
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <!-- /Tabs -->
+
+        <!-- Products -->
+        {% for i in product_category %}
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-4 g-md-4 most-sales-product {{i.name}}" data-aos="fade-up" data-aos-duration="1000">
+            {% for j in i.Product_Category.all %}
+            <div class="col">
+                <!-- Product Box -->
+                <div class="product-box">
+                    <a href="{{j.get_absolute_url}}"><div class="image" style="background-image: url('{{j.picture1.url}}')"></div></a>
+                    <div class="icons">
+                        <div class="btn btn-outline-secondary btn-favorite"></div>
+                        <div class="btn btn-outline-secondary btn-compare"></div>
+                    </div>
+                    <div class="details p-3">
+                        <div class="category">
+                            <a href="{% url 'PRODUCT:show_product_base_category' i.slug %}">{{i.name}}</a>
+                            &nbsp;/&nbsp;
+                            <a href="{% url 'PRODUCT:show_total_detail_category_product' j.Detail_category1.slug %}">{{j.Detail_category1}}</a>
+                        </div>
+                        <a href="{{j.get_absolute_url}}"><h2>  {{j.name}}  </h2></a>
+                        <div class="price">{{j.price | intword }} تومان</div>
+                        <div class="rate">
+
+                            <i class="fa fa-star-half-alt"></i>
+                            <!-- 
+
+                                <i class="fa fa-star"></i>
+
+                            -->
+                            
+
+                            <span class="reviews">(14 رای دهنده)</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- /Product Box -->
+            </div>
+            {% endfor %}
+
+        </div>
+        {% endfor %}
+
+
+
+
+
+
+
+
+        <!-- /Products -->
+    </div>
+</section>
+<!-- /Most Sales Products -->
+
+<!-- Promo Images -->
+<div class="container" data-aos="fade-up" data-aos-duration="1200">
+    <div class="row">
+        <div class="col-12 col-md-4 pt-2 text-center">
+            <a href="./products.html">
+                <img src="{% static 'front/assets/images/promo-image1.png' %}" alt="">
+            </a>
+        </div>
+        <div class="col-12 col-md-8 pt-2 text-center">
+            <a href="./products.html">
+                <img src="{% static 'front/assets/images/promo-image2.png' %}" alt="">
+            </a>
+        </div>
+    </div>
+</div>
+<!-- /Promo Images -->
+
+<!-- Blog Section -->
+<section id="blog" class="pt-5">
+    <h1 class="section-title">جدیدترین مقالات آموزشی</h1>
+    <div class="container pt-4">
+        <div class="row row-cols-1 row-cols-md-3">
+            <!-- Blog Post -->
+            {% for i in top_3_posts %}
+            
+            <div class="col">
+                <div class="blog-post-box" data-aos="fade-up" data-aos-duration="1000">
+                    <a href="{{i.get_absolute_url}}"><div class="post-image" style="background-image: url('{{i.picture.url}}')"></div></a>
+                    <div class="details py-3 px-4">
+                        <div class="post-date"> ارسال شده در  {{i.modified}}  </div>
+                        <a href="{{i.get_absolute_url}}">
+                            <h2 class="post-title">   {{i.introduce|safe|truncatewords:20}}  </h2>
+                        </a>
+                        <a href="{{i.get_absolute_url}}">
+                            <div class="post-description"> {{i.text|safe|truncatewords:20}} </div>
+                        </a>
+                        <div class="read-more"><a href="{{i.get_absolute_url}}" class="hvr-icon-back">بیشتر خوانید <i class="fa fa-arrow-left hvr-icon"></i></a></div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            
+            <!-- Blog Post -->
+            <!-- /Blog Post -->
+
+            <!-- Blog Post -->
+            <!-- /Blog Post -->
+
+            <!-- Blog Post -->
+        </div>
+    </div>
+</section>
+<!-- /Blog Section -->
+
+<!-- Footer -->
+    {% block footer %}
+    {% include 'front/footer.html' %}
+    {% endblock %}
+<!-- /Footer -->
+
+<!-- Copyright -->
+<section class="py-2" id="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-sm-6" id="social-links">
+                <span>ما را دنبال کنید</span>
+                <a href="#"><img src="{% static 'front/assets/images/social/insta.png' %}" alt=""></a>
+                <a href="#"><img src="{% static 'front/assets/images/social/facebook.png' %}" alt=""></a>
+                <a href="#"><img src="{% static 'front/assets/images/social/linkedin.png' %}" alt=""></a>
+                <a href="#"><img src="{% static 'front/assets/images/social/twitter.png' %}" alt=""></a>
+                <a href="#"><img src="{% static 'front/assets/images/social/youtube.png' %}" alt=""></a>
+            </div>
+            <div class="col-12 col-sm-6 text-sm-end pt-2 pt-sm-0">
+                <span>کلیه حقوق و مادی معنوی محفوط است.</span>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Copyright -->
+
+<!-- Scripts -->
+<script src="{% static 'front/assets/js/jquery.min.js' %}"></script>
+<script src="{% static 'front/assets/js/bootstrap.bundle.min.js' %}"></script>
+<script src="{% static 'front/assets/plugins/fontawesome/js/all.min.js' %}"></script>
+<script src="{% static 'front/assets/plugins/aos-master/dist/aos.js' %}"></script>
+<script src="{% static 'front/assets/js/droopmenu.js' %}"></script>
+<script src="{% static 'front/assets/js/nouislider.min.js' %}"></script>
+<script src="{% static 'front/assets/js/pagination.js' %}"></script>
+<script src="{% static 'front/assets/js/scripts.js' %}"></script>
+<!-- /Scripts -->
+</body>
+</html>

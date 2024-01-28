@@ -1,0 +1,461 @@
+{% load static %}
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>  آبنوش پمپ </title>
+    <!-- CSS Styles -->
+    <link rel="stylesheet" href="{% static 'front/assets/css/bootstrap.rtl.min.css' %}">
+    <link rel="stylesheet" href="{% static 'front/assets/plugins/fontawesome/css/all.min.css' %}">
+    <link rel="stylesheet" href="{% static 'front/assets/plugins/aos-master/dist/aos.css' %}">
+    <link rel="stylesheet" href="{% static 'front/assets/plugins/hover-master/css/hover-min.css' %}">
+    <link rel="stylesheet" href="{% static 'front/assets/css/ionicons.css' %}">
+    <link rel="stylesheet" href="{% static 'front/assets/css/droopmenu.css' %}">
+    <link rel="stylesheet" href="{% static 'front/assets/css/highlight.css' %}">
+    <link rel="stylesheet" href="{% static 'front/assets/css/nouislider.min.css' %}">
+
+    <link rel="stylesheet" href="{% static 'front/assets/css/owl.carousel.min.css' %}">
+    <link rel="stylesheet" href="{% static 'front/assets/css/swiper-bundle.min.css' %}">
+    <link rel="stylesheet" href="{% static 'front/assets/css/product-gallery.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.3/photoswipe.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.3/default-skin/default-skin.min.css" />
+
+    <link rel="stylesheet" href="{% static 'front/assets/css/style.css' %}">
+    <!-- /CSS Styles -->
+</head>
+<body>
+<!-- Header -->
+
+<section id="header">
+    <!-- Top NavBar -->
+    {% block topheader %}
+    {% include 'front/top_header.html' %}
+    {% endblock topheader %}
+    <!-- /Top NavBar -->
+    <!-- Search NavBar -->
+    {% block searchnav %}
+    {% include 'front/searchnav.html' %}
+    {% endblock searchnav %}
+    <!-- /Search NavBar -->
+    <!-- Main NavBar -->
+    {% block mainmenu %}
+    {% include 'front/mainmenu.html' %}
+    {% endblock mainmenu %}
+    <!-- Main NavBar -->
+</section>
+<!-- /Header -->
+
+<section class="inner-page" id="product-page">
+    <div class="container-fluid" id="page-hero">
+        <div class="row">
+            <div class="col-12">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12 px-0">
+                            <h1>   {{detail_product.name}}  </h1>
+                            <p>  {{detail_product.introduce}}   </p>
+                            <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="{% url 'BASE_app:Home' %}">صفحه نخست</a></li>
+                                    <li class="breadcrumb-item"><a href="./products.html">{{detail_product.category}}</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page"> {{detail_product.tags.name}}</li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="content">
+                    <div class="row">
+                        <div class="col-12 col-lg-5 px-lg-0">
+                            <div class="swiper-container gallery-top">
+                                <!-- Additional required wrapper -->
+                                <ul class="swiper-wrapper">
+                                    <!-- Slides -->
+                                
+                                    <li id="1" class="swiper-slide">
+                                        <a href="{{detail_product.picture1.url}}" itemprop="contentUrl" data-size="900x710">
+                                            <img src="{{detail_product.picture1.url}}" itemprop="thumbnail" alt="{{detail_product.name}}" />
+                                        </a>
+                                    </li>
+                                    <li id="1" class="swiper-slide">
+                                        <a href="{{detail_product.picture2.url}}" itemprop="contentUrl" data-size="900x710">
+                                            <img src="{{detail_product.picture2.url}}" itemprop="thumbnail" alt="{{detail_product.name}}" />
+                                        </a>
+                                    </li>
+                                    <li id="1" class="swiper-slide">
+                                        <a href="{{detail_product.picture3.url}}" itemprop="contentUrl" data-size="900x710">
+                                            <img src="{{detail_product.picture3.url}}" itemprop="thumbnail" alt="{{detail_product.name}}" />
+                                        </a>
+                                    </li>
+                                    <li id="1" class="swiper-slide">
+                                        <a href="{{detail_product.picture4.url}}" itemprop="contentUrl" data-size="900x710">
+                                            <img src="{{detail_product.picture4.url}}" itemprop="thumbnail" alt="{{detail_product.name}}" />
+                                        </a>
+                                    </li>
+                                    <!-- /Slides -->
+                                </ul>
+                                <!-- If we need navigation buttons -->
+                                <div title="قبلی" class="swiper-button-prev swiper-button-white"></div>
+                                <div title="بعدی" class="swiper-button-next swiper-button-white"></div>
+                            </div>
+
+                            <!-- Swiper -->
+                            <div class="swiper-container gallery-thumbs">
+                                <div class="swiper-wrapper">
+                                    <div class="swiper-slide" style="background-image:url('{{detail_product.picture1.url}}')"></div>
+                                    <div class="swiper-slide" style="background-image:url('{{detail_product.picture2.url}}')"></div>
+                                    <div class="swiper-slide" style="background-image:url('{{detail_product.picture3.url}}')"></div>
+                                    <div class="swiper-slide" style="background-image:url('{{detail_product.picture4.url}}')"></div>
+                                </div>
+                            </div>
+
+                            <div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+                                <div class="pswp__bg"></div>
+                                <div class="pswp__scroll-wrap">
+                                    <div class="pswp__container">
+                                        <div class="pswp__item"></div>
+                                        <div class="pswp__item"></div>
+                                        <div class="pswp__item"></div>
+                                    </div>
+                                    <div class="pswp__ui pswp__ui--hidden">
+                                        <div class="pswp__top-bar">
+                                            <div class="pswp__counter"></div>
+                                            <button class="pswp__button pswp__button--close" title="بستن (Esc)"></button>
+                                            <button class="pswp__button pswp__button--fs" title="تمام صفحه"></button>
+                                            <button class="pswp__button pswp__button--zoom" title="بزرگنمایی"></button>
+                                            <div class="pswp__preloader">
+                                                <div class="pswp__preloader__icn">
+                                                    <div class="pswp__preloader__cut">
+                                                        <div class="pswp__preloader__donut"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <button class="pswp__button pswp__button--arrow--left" title="قبلی"></button>
+                                        <button class="pswp__button pswp__button--arrow--right" title="بعدی"></button>
+                                        <div class="pswp__caption">
+                                            <div class="pswp__caption__center"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-7 mt-5 mt-lg-0 pl-lg-0" id="product-intro">
+                            <a href="./product.html">
+                                <h1>   {{detail_product.name}}  </h1>
+                            </a>
+                            <div class="stars-container">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <a href="#tabs-panel"><span>(نقد و بررسی)</span></a>
+                            </div>
+                            <div class="price-container py-2">
+                                {% if detail_product.is_sale %}
+                                    <span class="pre-price">{{detail_product.price}}</span>
+                               
+                                    <span class="price">{{detail_product.price2}}<span>تومان</span></span>
+                               {% else %}
+                                    <span class="price">{{detail_product.price}}<span>تومان</span></span>
+                               {% endif    %}
+
+                                <div class="badge badge-danger font-weight-light m-1 py-1 px-2">10%</div>
+                            </div>
+                            <p>{{detail_product.description | safe }}</p>
+
+                            <hr>
+                            <div class="variables">
+                                <div class="title">گزینه های موجود:</div>
+                                <div class="row">
+                                    <div class="col-12 col-sm-4 col-lg-3">
+                                        <div class="variable">
+                                            <div class="sub-title pt-2 pb-3">رنگ</div>
+                                            <span class="color-variable"><a href="#" class="red"></a></span>
+                                            <span class="color-variable"><a href="#" class="yellow"></a></span>
+                                            <span class="color-variable"><a href="#" class="blue"></a></span>
+                                            <span class="color-variable"><a href="#" class="black"></a></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-sm-4 col-lg-3">
+                                        <div class="variable">
+                                            <div class="sub-title pt-2 pb-2">گارانتی</div>
+                                            <select name="" class="form-select">
+                                                <option value="">بدون گارانتی</option>
+                                                <option value="">گارانتی 6 ماهه</option>
+                                                <option value="">گارانت 12 ماهه</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-sm-4 col-lg-3">
+                                        <div class="variable">
+                                            <div class="sub-title pt-2 pb-2">تعداد</div>
+                                            <input type="number" min="1" max="10" class="form-control" value="1">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="cta-container pt-3 pt-md-5">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <a href="./cart.html">
+                                            <div class="btn btn-success px-4 px-lg-2 px-xl-4 btn-add-to-basket"><i class="fa fa-shopping-cart"></i> افزودن به سبد خرید</div>
+                                        </a>
+                                        <br class="d-sm-none">
+                                        <div class="btn btn-outline-secondary btn-favorite mt-1 mt-sm-0" data-toggle="tooltip" data-placement="top" title="افزودن به علاقه‌مندی"></div>
+                                        <a href="#"><div class="btn btn-outline-secondary btn-compare mt-1 mt-sm-0" data-toggle="tooltip" data-placement="top" title="مقایسه"></div></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Share Links -->
+                            <div class="pt-5" id="share-links">
+                                <span>اشتراک گذاری: </span>
+                                <a href="#" target="_blank"><span class="share-link"><img src="assets/images/social/twitter.png" alt="توئیتر" width="18px"></span></a>
+                                <a href="#" target="_blank"><span class="share-link"><img src="assets/images/social/insta.png" alt="اینستاگرام" width="18px"></span></a>
+                                <a href="#" target="_blank"><span class="share-link"><img src="assets/images/social/linkedin.png" alt="لینکدین" width="18px"></span></a>
+                                <a href="#" target="_blank"><span class="share-link"><img src="assets/images/social/facebook.png" alt="فیس بوک" width="18px"></span></a>
+                            </div>
+                            <!-- Share Links -->
+                        </div>
+
+                        <!-- Nav Tabs -->
+                            <div class="col-12">
+                                <div id="product-nav-tabs">
+                                    <div class="row pt-3 px-md-3">
+                                        <div class="col-12">
+                                            <div id="tabs-panel">
+                                                <button class="tab-item tablink px-3 selected" onclick="openTab(event,'html-tab')">نقد و بررسی</button>
+                                                <button class="tab-item tablink px-3" onclick="openTab(event,'details-tab')">جدول مشخصات</button>
+                                                <button class="tab-item tablink px-3" onclick="openTab(event,'comments-tab')">دیدگاه کاربران ({{len_comment}})</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="col-12 pt-2 px-0 px-lg-0">
+                                                <!-- HTML Tab -->
+                                                <div id="html-tab" class="tabs-container text-justify p-0 p-md-3">
+                                                    
+                                                    {{detail_product.naghd_barrasi|safe}}
+                                                </div>
+                                                <!-- /HTML Tab -->
+
+                                                <!-- Details Tab -->
+                                                <div id="details-tab" class="tabs-container px-0 px-md-3 pb-0 pb-md-3" style="display:none">
+                                                    {{detail_product.description_2|safe}}
+                                                </div>
+
+                                                <!-- /Details Tab -->
+
+                                                <!-- Comments Tab -->
+                                                <div id="comments-tab" class="tabs-container px-0 px-md-3 pb-0 pb-md-2" style="display:none">
+                                                    <div class="row">
+                                                        <div class="col-12 text-justify" id="comments">
+                                                            <div class="comments-container">
+                                                                <div class="container px-0">
+                                                                    <div class="row">
+                                                                        <div class="col-12 pt-2">
+                                                                            <!-- Show Comments -->
+                                                                            <div class="comment p-3 my-2">
+                                                                                {% for i in comments_product %}
+                                                                                <div class="sender-details">
+                                                                                    <div class="row">
+                                                                                        <div class="col-3 col-sm-2 col-md-1 pl-md-0 pl-lg-2 pl-xl-3">
+                                                                                            <img src="{% static 'front/assets/images/user-no-image.jpg' %}" alt="" class="rounded">
+                                                                                        </div>
+                                                                                        <div class="col-9 col-sm-10 col-md-11 pr-0 pr-md-2 pr-xl-0 pt-0 pt-lg-1">
+                                                                                            <div class="name"> {{i.full_name}}</div>
+                                                                                            <div class="date">ارسال شده در  {{i.creation}} </div>
+                                                                                        </div>
+                                                                                        <div class="col-12">
+                                                                                            <p> {{i.text_comment}} </p>
+                                                                                            <span class="reply"><img src="{% static 'front/assets/images/comment-reply.png' %}" alt=""> ارسال پاسخ</span>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <!-- -->
+                                                                                <!-- Comment Reply -->
+                                                                                <div class="row justify-content-end">
+                                                                                    <div class="col-11 pt-2 pr-0">
+                                                                                        <div class="comment p-3">
+                                                                                            <div class="sender-details">
+                                                                                                <div class="row">
+                                                                                                    <div class="col-3 col-sm-2 col-md-1 pl-md-0 pl-lg-2 pl-xl-3">
+                                                                                                        <img src="{% static 'front/assets/images/user-no-image.jpg' %}" alt="" class="rounded">
+                                                                                                    </div>
+                                                                                                    <div class="col-9 col-sm-10 col-md-11 pr-0 pr-md-2 pr-xl-0 pt-0 pt-lg-1">
+                                                                                                        <div class="name">امین کیانی</div>
+                                                                                                        <div class="date">ارسال شده در 18 تیر 1400</div>
+                                                                                                    </div>
+                                                                                                    <div class="col-12">
+                                                                                                        <p>صفحات و محتوای آزمایشی همیشه بخشی از محتوای پیش‌نمایش قالب و افزونه های وب هستند که شما بتوانید ارتباط درستی با پیش نمایش قالب گرفته و تصمیم مناسبی بگیرید. این صفحات معمولا برای اطلاعات کلی در مورد سایت مثل «درباره ما»، «تماس با ما»، «فهرست» یا «نظرات شما» مفید هستند.</p>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                                {% endfor %}
+                                                                                <!-- /Comment Reply -->
+                                                                            </div>
+                                                                            <!-- /Show Comments -->
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <!-- Send Comment Form -->
+                                                            <div class="comments-container">
+                                                                <div class="row pt-4">
+                                                                    <div class="col-12"><h2>دیدگاه خود را ارسال کنید</h2></div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col-12 py-3">
+                                                                        <form method="POST" action="">
+                                                                            {% csrf_token %}
+                                                                            <div id="send-comment-form">
+                                                                                <p>نظر خود را برای این مطلب ارسال کنید. نشانی ایمیل شما منتشر نخواهد شد.</p>
+                                                                                <div class="row">
+                                                                                    <div class="col-12 px-3 pl-md-1 col-md-6">
+                                                                                        <div class="form-group my-1">
+                                                                                            <input type="text" name="full_name" class="form-control" placeholder="* نام شما" required oninvalid="this.setCustomValidity('لطفا نام خود را وارد کنید')" oninput="setCustomValidity('')">
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="col-12 px-3 pr-md-1 col-md-6">
+                                                                                        <div class="form-group my-1">
+                                                                                            <input type="email"  name="email"  class="form-control text-start" placeholder="پست الکترونیک *" required oninvalid="this.setCustomValidity('لطفا پست الکترونیک خود را وارد کنید')" oninput="setCustomValidity('')">
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="col-12">
+                                                                                        <div class="form-group my-1">
+                                                                                            <textarea class="form-control" name="text_comment" id="" rows="4" placeholder="متن دیدگاه"></textarea>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="col-12">
+                                                                                        <div class="form-group my-1">
+                                                                                            <input type="submit" value="ارسال دیدگاه" class="btn btn-success px-5">
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </form>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <!-- /Send Comment Form -->
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- /Comments Tab -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /Nav Tabs -->
+
+                        <!-- Suggested Products -->
+                        <div class="col-12 pt-5" id="suggested-products">
+                            <div class="title py-3 text-center">محصولات مرتبط</div>
+                            <div class="owl-carousel products-carousel">
+                                {% for i in related_product %}
+                                <!-- Product Item -->
+                                <div class="product-box item">
+                                    <a href="{{i.get_absolute_url}}"><div class="image" style="background-image: url('{{i.picture1.url}}')"></div></a>
+                                    <div class="details p-3">
+                                        <div class="category">
+                                            <a href="{% url 'PRODUCT:show_product_base_category' i.category.slug %}"> {{i.category}}</a>
+                                            &nbsp;/&nbsp;
+                                            <a href="{% url 'PRODUCT:show_total_detail_category_product' i.Detail_category1.slug %}">{{i.Detail_category1}}</a>
+                                        </div>
+                                        <a href="{{i.get_absolute_url}}"><h2>{{i.name}}</h2></a>
+                                        <div class="price">{{i.price}} تومان</div>
+                                        <div class="rate">
+                                            <i class="fa fa-star-half-alt"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <span class="reviews">(14 رای دهنده)</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                                <!-- /Product Item -->
+                                <!-- Product Item -->
+                                
+                                <!-- /Product Item -->
+                                <!-- Product Item -->
+                                
+                                <!-- /Product Item -->
+                                <!-- Product Item -->
+                                
+                                <!-- /Product Item -->
+                            </div>
+                        </div>
+                        <!-- /Suggested Products -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+    {% block footer %}
+    {% include 'front/footer.html' %}
+    {% endblock %}
+<!-- /Footer -->
+
+<!-- Copyright -->
+<section class="py-2" id="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-sm-6" id="social-links">
+                <span>ما را دنبال کنید</span>
+                <a href="#"><img src="{% static 'front/assets/images/social/insta.png' %}" alt=""></a>
+                <a href="#"><img src="{% static 'front/assets/images/social/facebook.png' %}" alt=""></a>
+                <a href="#"><img src="{% static 'front/assets/images/social/linkedin.png' %}" alt=""></a>
+                <a href="#"><img src="{% static 'front/assets/images/social/twitter.png' %}" alt=""></a>
+                <a href="#"><img src="{% static 'front/assets/images/social/youtube.png' %}" alt=""></a>
+            </div>
+            <div class="col-12 col-sm-6 text-sm-end pt-2 pt-sm-0">
+                <span>کلیه حقوق و مادی معنوی محفوط است.</span>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Copyright -->
+
+<!-- Scripts -->
+<script src="{% static 'front/assets/js/jquery.min.js' %}"></script>
+<script src="{% static 'front/assets/js/bootstrap.bundle.min.js' %}"></script>
+<script src="{% static 'front/assets/plugins/fontawesome/js/all.min.js' %}"></script>
+<script src="{% static 'front/assets/plugins/aos-master/dist/aos.js' %}"></script>
+<script src="{% static 'front/assets/js/droopmenu.js' %}"></script>
+<script src="{% static 'front/assets/js/nouislider.min.js' %}"></script>
+<script src="{% static 'front/assets/js/pagination.js' %}"></script>
+
+<script src="{% static 'front/assets/js/owl.carousel.min.js' %}"></script>
+<script src="{% static 'front/assets/js/nav-tabs.js' %}"></script>
+<script src="{% static 'front/assets/js/swiper-bundle.min.js' %}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.3/photoswipe.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.3/photoswipe-ui-default.min.js"></script>
+<script src="{% static 'front/assets/js/product-gallery.js' %}"></script>
+
+<script src="{% static 'front/assets/js/scripts.js' %}"></script>
+<!-- /Scripts -->
+</body>
+</html>

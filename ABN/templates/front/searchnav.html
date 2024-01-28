@@ -1,0 +1,37 @@
+{% load static %}
+<div id="search-nav">
+    <div class="container pt-1">
+        <div class="row py-3 align-content-center">
+            <div class="col-12 col-md-3 col-xl-2 text-center text-md-start pb-2" id="header-logo">
+                <a href="{% url 'BASE_app:Home' %}">
+                    <img width="100px" height="100px" src="{% static 'front/assets/images/editlogo.png' %}" alt="آبنوش پمپ" >  آبنوش پمپ
+                </a>
+            </div>
+            <div class="col-12 col-md-5 col-xl-6">
+                <div id="search-bar">
+                    <form action="{% url 'BASE_app:search' %}"  >
+                    <i class="fa fa-search"></i>
+                    <input name="text" type="search" placeholder="جستجو کنید...">
+                    </form>
+                </div>
+            </div>
+            <div class="col-12 col-md-4">
+                <div class="row">
+                    <div class="col-12 col-md-7 col-lg-6 text-center" id="btn-login-register">
+                        {% if user.is_authenticated %}
+                            <a href="{% url 'BASE_app:logout_user' %}">خارج شوید {{user.first_name}}</a>
+                        {% else %}
+                            <a href="{% url 'BASE_app:login_user' %}">ورود</a>
+                            <a href="{% url 'BASE_app:Register' %}">ثبت نام</a>
+                        {% endif %}
+                    </div>
+                    <div class="col-12 col-md-5 col-lg-6">
+                        <a href="./cart.html">
+                            <div class="btn btn-warning w-100"><i class="fa fa-shopping-cart"></i>&nbsp;<span class="d-md-none d-lg-inline-block">سبد خرید</span> (2)</div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,142 @@
+{% load static %}
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>قالب فروشگاهی روبیک مارکت</title>
+    <!-- CSS Styles -->
+    <link rel="stylesheet" href="{% static 'front/assets/css/bootstrap.rtl.min.css' %}">
+    <link rel="stylesheet" href="{% static 'front/assets/plugins/fontawesome/css/all.min.css' %}">
+    <link rel="stylesheet" href="{% static 'front/assets/plugins/aos-master/dist/aos.css' %}">
+    <link rel="stylesheet" href="{% static 'front/assets/plugins/hover-master/css/hover-min.css' %}">
+    <link rel="stylesheet" href="{% static 'front/assets/css/ionicons.css' %}">
+    <link rel="stylesheet" href="{% static 'front/assets/css/droopmenu.css' %}">
+    <link rel="stylesheet" href="{% static 'front/assets/css/highlight.css' %}">
+    <link rel="stylesheet" href="{% static 'front/assets/css/nouislider.min.css' %}">
+    <link rel="stylesheet" href="{% static 'front/assets/css/style.css' %}">
+    <!-- /CSS Styles -->
+</head>
+<body>
+<!-- Header -->
+<section id="header">
+    <!-- Top NavBar -->
+    {% block topheader %}
+    {% include 'front/top_header.html' %}
+    {% endblock topheader %}
+    <!-- /Top NavBar -->
+    <!-- Search NavBar -->
+    {% block searchnav %}
+    {% include 'front/searchnav.html' %}
+    {% endblock searchnav %}
+    <!-- /Search NavBar -->
+    <!-- Main NavBar -->
+    {% block mainmenu %}
+    {% include 'front/mainmenu.html' %}
+    {% endblock mainmenu %}
+    <!-- Main NavBar -->
+</section>
+<!-- /Header -->
+
+<section class="inner-page" id="contact-page">
+    <div class="container-fluid" id="page-hero">
+        <div class="row">
+            <div class="col-12">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12 px-0">
+                            <h1>عضویت در سایت</h1>
+                            <p>با عضویت در سایت از همه امکانات روبیک مارکت بهره مند شوید.</p>
+                            <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="./index.html">صفحه نخست</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page">عضویت</li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container py-2 py-md-5">
+        <div class="row">
+            <div class="col-12 col-sm-10 offset-sm-1">
+                <div class="content">
+                    <div class="row">
+                        <div class="col-12 col-lg-5 text-center">
+                            <img src="{% static 'front/assets/images/login.png' %}" alt="">
+                        </div>
+                        <form>
+                            {% csrf_token %}
+                        <div class="col-12 col-lg-7 pt-5 pt-md-0 align-self-center">
+                            <div class="title">عضویت در روبیک مارکت</div>
+                            <p>با ورود به ناحیه کاربری خود از همه امکانات سایت بهره مند شوید.</p>
+                            <div class="form-group">
+                                <label for="name">نام و نام خانوادگی :</label>
+                                <input type="text" name="username" class="form-control" id="name">
+                            </div>
+                            <div class="form-group">
+                                <label for="email">پست الکترونیک :</label>
+                                <input type="email" class="form-control" id="email">
+                            </div>
+                            <div class="form-group">
+                                <label for="password">رمز عبور :</label>
+                                <input type="password" name="password1" class="form-control" id="password">
+                            </div>
+                            <div class="form-group">
+                                <label for="password">تایید عبور :</label>
+                                <input type="password" name="password2" class="form-control" id="password">
+                            </div>
+                            <div class="form-group">
+                                <a href=""><input type="submit" value="تکمیل عضویت" class="btn btn-success"></a>
+                            </div>
+                        </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+{% block footer %}
+{% include 'front/footer.html' %}
+{% endblock footer %}
+<!-- /Footer -->
+
+<!-- Copyright -->
+<section class="py-2" id="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-sm-6" id="social-links">
+                <span>ما را دنبال کنید</span>
+                <a href="#"><img src="{% static 'front/assets/images/social/insta.png' %}" alt=""></a>
+                <a href="#"><img src="{% static 'front/assets/images/social/facebook.png' %}" alt=""></a>
+                <a href="#"><img src="{% static 'front/assets/images/social/linkedin.png' %}" alt=""></a>
+                <a href="#"><img src="{% static 'front/assets/images/social/twitter.png' %}" alt=""></a>
+                <a href="#"><img src="{% static 'front/assets/images/social/youtube.png' %}" alt=""></a>
+            </div>
+            <div class="col-12 col-sm-6 text-sm-end pt-2 pt-sm-0">
+                <span>کلیه حقوق و مادی معنوی محفوط است.</span>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Copyright -->
+
+<!-- Scripts -->
+<script src="{% static 'front/assets/js/jquery.min.js' %}"></script>
+<script src="{% static 'front/assets/js/bootstrap.bundle.min.js' %}"></script>
+<script src="{% static 'front/assets/plugins/fontawesome/js/all.min.js' %}"></script>
+<script src="{% static 'front/assets/plugins/aos-master/dist/aos.js' %}"></script>
+<script src="{% static 'front/assets/js/droopmenu.js' %}"></script>
+<script src="{% static 'front/assets/js/nouislider.min.js' %}"></script>
+<script src="{% static 'front/assets/js/pagination.js' %}"></script>
+<script src="{% static 'front/assets/js/scripts.js' %}"></script>
+<!-- /Scripts -->
+</body>
+</html>

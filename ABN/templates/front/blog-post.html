@@ -1,0 +1,362 @@
+{% load static %}
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>آبنوش پمپ  </title>
+    <!-- CSS Styles -->
+    <link rel="stylesheet" href="{% static 'front/assets/css/bootstrap.rtl.min.css' %}">
+    <link rel="stylesheet" href="{% static 'front/assets/plugins/fontawesome/css/all.min.css' %}">
+    <link rel="stylesheet" href="{% static 'front/assets/plugins/aos-master/dist/aos.css' %}">
+    <link rel="stylesheet" href="{% static 'front/assets/plugins/hover-master/css/hover-min.css' %}">
+    <link rel="stylesheet" href="{% static 'front/assets/css/ionicons.css' %}">
+    <link rel="stylesheet" href="{% static 'front/assets/css/droopmenu.css' %}">
+    <link rel="stylesheet" href="{% static 'front/assets/css/highlight.css' %}">
+    <link rel="stylesheet" href="{% static 'front/assets/css/nouislider.min.css' %}">
+    <link rel="stylesheet" href="{% static 'front/assets/css/style.css' %}">
+    <!-- /CSS Styles -->
+</head>
+<body>
+<!-- Header -->
+{% if messages %}
+    {% for i in messages %}
+    <div class="alert alert-primary" role="alert">
+    {{i}}
+  </div>
+  {% endfor %}
+{% endif %}
+<section id="header">
+    <!-- Top NavBar -->
+    {% block topheader %}
+    {% include 'front/top_header.html' %}
+    {% endblock topheader %}
+    <!-- /Top NavBar -->
+    <!-- Search NavBar -->
+    {% block searchnav %}
+    {% include 'front/searchnav.html' %}
+    {% endblock searchnav %}
+    <!-- /Search NavBar -->
+    <!-- Main NavBar -->
+    {% block mainmenu %}
+    {% include 'front/mainmenu.html' %}
+    {% endblock mainmenu %}
+    <!-- Main NavBar -->
+</section>
+<!-- /Header -->
+
+<section class="inner-page blog-inner-page" id="blog-page">
+    <div class="container-fluid" id="page-hero">
+        <div class="row">
+            <div class="col-12">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12 px-0">
+                            <h1> {{detail_post.title}}</h1>
+                            <p>{{detail_post.introduce}}</p>
+                            <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="{% url 'BASE_app:Home' %}">صفحه نخست</a></li>
+                                    <li class="breadcrumb-item"><a href="{% url 'BLOG:Show_Blog' %}">بلاگ آموزشی</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page">{{detail_post.category}} </li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="content">
+                    <div class="row">
+                        <div class="col-12 col-lg-9">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="blog-container">
+                                        <div class="row pt-2 px-3" id="post-title">
+                                            <div class="col-12 col-md-8">
+                                                <h1> {{detail_post.title}}</h1>
+                                            </div>
+                                            <div class="col-12 col-md-4 text-start text-md-end"><span class="date">ارسال شده در   {{i.modified}}</span></div>
+                                        </div>
+                                        <hr>
+                                        <div class="row py-0 px-3" id="post-details">
+                                            <div class="col-8">
+                                                <span>دسته بندی: <a href="./blog.html"> {{detail_post.category}}</a></span>
+                                            </div>
+                                            <div class="col-4 text-end"><span>244 بازدید | 3 نظر</span></div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-12 pt-2 text-justify" id="post-html">
+                                                <div class="text-center pt-2 pb-3"><img src="{{detail_post.picture.url}}" alt="{{detail_post.title}}"></div>
+                                                <p>{{detail_post.text|safe}}</p>
+                                            </div>
+                                            <div class="col-12">
+                                                <hr>
+                                                <div id="keywords">
+                                                    <span>برچسب ها:</span>
+                                                    {% for i in detail_post.tags.all %}
+                                                    <a href="#"><span class="keyword">{{i}}</span></a>
+                                                    {% endfor %}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row pt-3 pb-4 pb-lg-0">
+                                            <div class="col-12" id="share-links">
+                                                <span>به اشتراک بگذارید در:</span><br class="d-md-none">
+                                                <a href="#" target="_blank"><span class="share-link"><img src="{% static 'front/assets/images/social/twitter.png' %}" alt="توئیتر" height="25px"> توئیتر</span></a>
+                                                <a href="#" target="_blank"><span class="share-link"><img src="{% static 'front/assets/images/social/facebook.png' %}" alt="فیس بوک" height="25px"> فیس بوک</span></a>
+                                                <a href="#" target="_blank"><span class="share-link"><img src="{% static 'front/assets/images/social/linkedin.png' %}" alt="لینکدین" height="25px"> لینکدین</span></a>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <!-- Comments -->
+                                        <div class="row pt-3 pb-4 pb-lg-0">
+                                            <div class="col-12 text-justify" id="comments">
+                                                <h2>نظرات کاربران</h2>
+                                                <div class="comments-container">
+                                                    <div class="container px-0">
+                                                        <div class="row">
+                                                            <div class="col-12 pt-2">
+                                                                {% for i in comments %}
+                                                                <!-- Show Comments -->
+                                                                <div class="comment p-3 my-2">
+                                                                    <div class="sender-details">
+                                                                        <div class="row">
+                                                                            <div class="col-3 col-sm-2 col-md-1 pl-md-0 pl-lg-2 pl-xl-3">
+                                                                                <img src="{% static 'front/assets/images/user-no-image.jpg' %}" alt="" class="rounded">
+                                                                            </div>
+                                                                            <div class="col-9 col-sm-10 col-md-11 pr-0 pr-md-2 pr-xl-0 pt-0 pt-lg-1">
+                                                                                <div class="name"> {{i.full_name}}</div>
+                                                                                <div class="date">ارسال شده در   {{i.created}}</div>
+                                                                            </div>
+                                                                            <div class="col-12">
+                                                                                <p>{{i.text}}</p>
+                                                                                <span class="reply"><img src="{% static 'front/assets/images/comment-reply.png' %}" alt=""> ارسال پاسخ</span>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <!-- Comment Reply -->
+                                                                    <div class="row justify-content-end">
+                                                                        <div class="col-11 pt-2 pr-0">
+                                                                            <div class="comment p-3">
+                                                                                <div class="sender-details">
+                                                                                    <div class="row">
+                                                                                        <div class="col-3 col-sm-2 col-md-1 pl-md-0 pl-lg-2 pl-xl-3">
+                                                                                            <img src="{% static 'front/assets/images/user-no-image.jpg' %}" alt="" class="rounded">
+                                                                                        </div>
+                                                                                        <div class="col-9 col-sm-10 col-md-11 pr-0 pr-md-2 pr-xl-0 pt-0 pt-lg-1">
+                                                                                            <div class="name">امین کیانی</div>
+                                                                                            <div class="date">ارسال شده در 18 تیر 1400</div>
+                                                                                        </div>
+                                                                                        <div class="col-12">
+                                                                                            <p>صفحات و محتوای آزمایشی همیشه بخشی از محتوای پیش‌نمایش قالب و افزونه های وب هستند که شما بتوانید ارتباط درستی با پیش نمایش قالب گرفته و تصمیم مناسبی بگیرید. این صفحات معمولا برای اطلاعات کلی در مورد سایت مثل «درباره ما»، «تماس با ما»، «فهرست» یا «نظرات شما» مفید هستند.</p>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <!-- /Comment Reply -->
+                                                                </div>
+                                                                {% endfor %}
+                                                                <!-- /Show Comments -->
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <!-- Send Comment Form -->
+                                                <div class="comments-container">
+                                                    <div class="row pt-4">
+                                                        <div class="col-12"><h2>دیدگاه خود را ارسال کنید</h2></div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-12 py-3">
+                                                            <form action="" method="POST" >
+                                                                {% csrf_token %}
+                                                                <div id="send-comment-form">
+                                                                    <p>نظر خود را برای این مطلب ارسال کنید. نشانی ایمیل شما منتشر نخواهد شد.</p>
+                                                                    <div class="row">
+                                                                        <div class="col-12 px-3 pl-md-1 col-md-6">
+                                                                            <div class="form-group my-1">
+                                                                                <input type="text" name="full_name" class="form-control" placeholder="* نام شما" required oninvalid="this.setCustomValidity('لطفا نام خود را وارد کنید')" oninput="setCustomValidity('')">
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-12 px-3 pr-md-1 col-md-6">
+                                                                            <div class="form-group my-1">
+                                                                                <input type="email" name="email" class="form-control text-start" placeholder="پست الکترونیک *" required oninvalid="this.setCustomValidity('لطفا پست الکترونیک خود را وارد کنید')" oninput="setCustomValidity('')">
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-12 px-3">
+                                                                            <div class="form-group my-1">
+                                                                                <textarea class="form-control" name="text_comment" id="" rows="4" placeholder="متن دیدگاه"></textarea>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-12">
+                                                                            <div class="form-group my-1">
+                                                                                <input type="submit" value="ارسال دیدگاه" class="btn btn-success px-5">
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- /Send Comment Form -->
+                                            </div>
+                                        </div>
+                                        <!-- /Comments -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-3">
+                            <div class="row">
+                                <!-- Side Panel -->
+                                <div class="col-12 col-sm-6 col-lg-12 px-lg-2">
+                                    <div class="blog-side-panel">
+                                        <div class="row pt-2 px-3">
+                                            <div class="col"><div class="title">پربازدیدترین محصولات</div></div>
+                                        </div>
+                                        <hr>
+                                        <div class="container">
+                                            <div class="row">
+                                                {% for i in many_visited_product %}
+                                                <!-- Side Panel Product -->
+                                                <div class="col-12 col-lg-12 px-0 mt-2">
+                                                    <a href="{{i.get_absolute_url}}">
+                                                        <div class="side-blog-product">
+                                                            <div class="row pl-3">
+                                                                <div class="col-4 pl-2">
+                                                                    <div class="image" style="background-image: url('{{i.picture1.url}}')"></div>
+                                                                </div>
+                                                                <div class="col-8 px-0">
+                                                                    <h2>  {{i.name}}  </h2>
+                                                                    <div class="row">
+                                                                        <div class="col-8 pl-0">
+                                                                            <span class="price">{{i.price}} تومان</span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                                {% endfor %}
+                                                <!-- /Side Panel Product -->
+                                                <!-- Side Panel Product -->
+
+                                                <!-- /Side Panel Product -->
+                                                <!-- Side Panel Product -->
+
+                                                <!-- /Side Panel Product -->
+                                                <!-- Side Panel Product -->
+
+                                                <!-- /Side Panel Product -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-6 col-lg-12 px-lg-2">
+                                    <div class="blog-side-panel">
+                                        <div class="row pt-4 pt-sm-2 px-3">
+                                            <div class="col"><div class="title">پربازدیدترین مطالب</div></div>
+                                        </div>
+                                        <hr>
+                                        <div class="container">
+                                            <div class="row">
+                                                
+                                                <!-- Side Panel Post -->
+                                                {% for i in many_visited_post %}
+                                                <div class="col-12 col-lg-12 px-0 mt-2">
+                                                    <div class="side-blog-post">
+                                                        <div class="row pl-3">
+                                                            <div class="col-4 pl-2">
+                                                                <a href="{{i.get_absolute_url}}"><div class="image" style="background-image: url('{{i.picture.url}}')"></div></a>
+                                                            </div>
+                                                            <div class="col-8 px-0">
+                                                                <a href="{{i.get_absolute_url}}"><h2>   {{i.title}}  </h2></a>
+                                                                <div class="row">
+                                                                    <div class="col-12 col-xl-6 pl-0">
+                                                                        <span class="category">دسته بندی: <a href="./blog.html">{{i.category}}</a></span>
+                                                                    </div>
+                                                                    <div class="col-12 col-xl-6 pr-0 text-start text-xl-end d-none d-xl-block">
+                                                                        <span class="date">{{i.modified}}  </span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                {% endfor %}
+
+                                                <!-- /Side Panel Post -->
+                                                <!-- Side Panel Post -->
+
+                                                <!-- /Side Panel Post -->
+                                                <!-- Side Panel Post -->
+
+                                                <!-- /Side Panel Post -->
+                                                <!-- Side Panel Post -->
+
+                                                <!-- /Side Panel Post -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /Side Panel -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+    {% block footer %}
+    {% include 'front/footer.html' %}
+    {% endblock footer %}
+<!-- /Footer -->
+
+<!-- Copyright -->
+<section class="py-2" id="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-sm-6" id="social-links">
+                <span>ما را دنبال کنید</span>
+                <a href="#"><img src="{% static 'front/assets/images/social/insta.png' %}" alt=""></a>
+                <a href="#"><img src="{% static 'front/assets/images/social/facebook.png' %}" alt=""></a>
+                <a href="#"><img src="{% static 'front/assets/images/social/linkedin.png' %}" alt=""></a>
+                <a href="#"><img src="{% static 'front/assets/images/social/twitter.png' %}" alt=""></a>
+                <a href="#"><img src="{% static 'front/assets/images/social/youtube.png' %}" alt=""></a>
+            </div>
+            <div class="col-12 col-sm-6 text-sm-end pt-2 pt-sm-0">
+                <span>کلیه حقوق و مادی معنوی محفوط است.</span>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Copyright -->
+
+<!-- Scripts -->
+<script src="{% static 'front/assets/js/jquery.min.js' %}"></script>
+<script src="{% static 'front/assets/js/bootstrap.bundle.min.js' %}"></script>
+<script src="{% static 'front/assets/plugins/fontawesome/js/all.min.js' %}"></script>
+<script src="{% static 'front/assets/plugins/aos-master/dist/aos.js' %}"></script>
+<script src="{% static 'front/assets/js/droopmenu.js' %}"></script>
+<script src="{% static 'front/assets/js/nouislider.min.js' %}"></script>
+<script src="{% static 'front/assets/js/pagination.js' %}"></script>
+<script src="{% static 'front/assets/js/scripts.js' %}"></script>
+<!-- /Scripts -->
+</body>
+</html>

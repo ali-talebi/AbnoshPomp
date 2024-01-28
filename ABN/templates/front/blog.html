@@ -1,0 +1,264 @@
+{% load static %}
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>قالب فروشگاهی روبیک مارکت</title>
+    <!-- CSS Styles -->
+    <link rel="stylesheet" href="{% static 'front/assets/css/bootstrap.rtl.min.css' %}">
+    <link rel="stylesheet" href="{% static 'front/assets/plugins/fontawesome/css/all.min.css' %}">
+    <link rel="stylesheet" href="{% static 'front/assets/plugins/aos-master/dist/aos.css' %}">
+    <link rel="stylesheet" href="{% static 'front/assets/plugins/hover-master/css/hover-min.css' %}">
+    <link rel="stylesheet" href="{% static 'front/assets/css/ionicons.css' %}">
+    <link rel="stylesheet" href="{% static 'front/assets/css/droopmenu.css' %}">
+    <link rel="stylesheet" href="{% static 'front/assets/css/highlight.css' %}">
+    <link rel="stylesheet" href="{% static 'front/assets/css/nouislider.min.css' %}">
+    <link rel="stylesheet" href="{% static 'front/assets/css/style.css' %}">
+    <!-- /CSS Styles -->
+</head>
+<body>
+<!-- Header -->
+<section id="header">
+    <!-- Top NavBar -->
+    {% block topheader %}
+    {% include 'front/top_header.html' %}
+    {% endblock topheader %}
+    <!-- /Top NavBar -->
+    <!-- Search NavBar -->
+    {% block searchnav %}
+    {% include 'front/searchnav.html' %}
+    {% endblock searchnav %}
+    <!-- /Search NavBar -->
+    <!-- Main NavBar -->
+    {% block mainmenu %}
+    {% include 'front/mainmenu.html' %}
+    {% endblock mainmenu %}
+    <!-- endMain NAvbar -->
+</section>
+<!-- /Header -->
+
+<section class="inner-page" id="blog-page">
+    <div class="container-fluid" id="page-hero">
+        <div class="row">
+            <div class="col-12">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12 px-0">
+                            <h1>بلاگ</h1>
+                            <p>بلاگ آموزشی  آبنوش پمپ</p>
+                            <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="./index.html">صفحه نخست</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page">بلاگ آموزشی</li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="content">
+                    <div class="row">
+                        <div class="col-12 col-lg-9">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="blog-container">
+                                        <div class="row py-2 px-3">
+                                            <div class="col"><h1 class="title">مرکز آموزش روبیک مارکت</h1></div>
+                                        </div>
+                                        <div class="container px-2 pb-3">
+                                            <div class="row row-cols-1 row-cols-md-2">
+                                                <!-- Blog Post -->
+                                                
+                                                <!-- Blog Post -->
+                                                <!-- /Blog Post -->
+                                                {% for i in posts %}
+                                                <div class="col">
+                                                    <div class="blog-post-box" data-aos="fade-up" data-aos-duration="1000">
+                                                        <a href="{{i.get_absolute_url}}"><div class="post-image" style="background-image: url('{{i.picture.url}}')"></div></a>
+                                                        <div class="details py-3 px-4">
+                                                            <div class="post-date">ارسال شده در   {{i.creation}}</div>
+                                                            <a href="{{i.get_absolute_url}}">
+                                                                <h2 class="post-title">{{i.title}}</h2>
+                                                            </a>
+                                                            <a href="{{i.get_absolute_url}}">
+                                                                <div class="post-description"> {{i.text|safe|truncatewords:20}}</div>
+                                                            </a>
+                                                            <div class="read-more"><a href="{{i.get_absolute_url}}" class="hvr-icon-back">بیشتر خوانید <i class="fa fa-arrow-left hvr-icon"></i></a></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                {% endfor %}
+
+                                                <!-- Blog Post -->
+                                                <!-- /Blog Post -->
+                                                
+                                                <!-- Blog Post -->
+                                                <!-- /Blog Post -->
+                                                
+                                                <!-- Blog Post -->
+                                                <!-- Blog Post -->
+                                                
+                                                <!-- Blog Post -->
+                                                <!-- /Blog Post -->
+                                                
+                                                <!-- Blog Post -->
+                                                <!-- /Blog Post -->
+                                                
+                                                <!-- Blog Post -->
+                                                <!-- /Blog Post -->
+                                                
+                                                <!-- Blog Post -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-3">
+                            <div class="row">
+                                <!-- Side Panel -->
+                                <div class="col-12 col-sm-6 col-lg-12 px-lg-2">
+                                    <div class="blog-side-panel">
+                                        <div class="row pt-2 px-3">
+                                            <div class="col"><div class="title">پربازدیدترین محصولات</div></div>
+                                        </div>
+                                        <hr>
+                                        <div class="container">
+                                            <div class="row">
+                                                <!-- Side Panel Product -->
+                                                {% for i in many_visited_product %}
+                                                <div class="col-12 col-lg-12 px-0 mt-2">
+                                                    <a href="{{i.get_absolute_url}}">
+                                                        <div class="side-blog-product">
+                                                            <div class="row pl-3">
+                                                                <div class="col-4 pl-2">
+                                                                    <div class="image" style="background-image: url('{{i.picture1.url}}')"></div>
+                                                                </div>
+                                                                <div class="col-8 px-0">
+                                                                    <h2>  {{i.name}}  </h2>
+                                                                    <div class="row">
+                                                                        <div class="col-8 pl-0">
+                                                                            <span class="price"> {{i.price}} تومان</span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                                {% endfor %}
+                                                <!-- /Side Panel Product -->
+                                                <!-- Side Panel Product -->
+
+                                                <!-- /Side Panel Product -->
+                                                <!-- Side Panel Product -->
+
+                                                <!-- /Side Panel Product -->
+                                                <!-- Side Panel Product -->
+                                      
+                                                <!-- /Side Panel Product -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-6 col-lg-12 px-lg-2">
+                                    <div class="blog-side-panel">
+                                        <div class="row pt-4 pt-sm-2 px-3">
+                                            <div class="col"><div class="title">پربازدیدترین مطالب</div></div>
+                                        </div>
+                                        <hr>
+                                        <div class="container">
+                                            <div class="row">
+                                                <!-- Side Panel Post -->
+                                                {% for i in many_visited_post %}
+                                                <div class="col-12 col-lg-12 px-0 mt-2">
+                                                    <div class="side-blog-post">
+                                                        <div class="row pl-3">
+                                                            <div class="col-4 pl-2">
+                                                                <a href="{{i.get_absolute_url}}"><div class="image" style="background-image: url('{{i.picture.url}}')"></div></a>
+                                                            </div>
+                                                            <div class="col-8 px-0">
+                                                                <a href="{{i.get_absolute_url}}"><h2>  {{i.title}}   </h2></a>
+                                                                <div class="row">
+                                                                    <div class="col-12 col-xl-6 pl-0">
+                                                                        <span class="category">دسته بندی: <a href="./blog.html">{{i.category}}</a></span>
+                                                                    </div>
+                                                                    <div class="col-12 col-xl-6 pr-0 text-start text-xl-end d-none d-xl-block">
+                                                                        <span class="date">30 خرداد 1400</span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                {% endfor %}
+                                                <!-- /Side Panel Post -->
+                                                <!-- Side Panel Post -->
+
+                                                <!-- /Side Panel Post -->
+                                                <!-- Side Panel Post -->
+
+                                                <!-- /Side Panel Post -->
+                                                <!-- Side Panel Post -->
+
+                                                <!-- /Side Panel Post -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /Side Panel -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+{% block footer %}
+{% include 'front/footer.html' %}
+{% endblock %}
+<!-- /Footer -->
+
+<!-- Copyright -->
+<section class="py-2" id="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-sm-6" id="social-links">
+                <span>ما را دنبال کنید</span>
+                <a href="#"><img src="{% static 'front/assets/images/social/insta.png' %}" alt=""></a>
+                <a href="#"><img src="{% static 'front/assets/images/social/facebook.png' %}" alt=""></a>
+                <a href="#"><img src="{% static 'front/assets/images/social/linkedin.png' %}" alt=""></a>
+                <a href="#"><img src="{% static 'front/assets/images/social/twitter.png' %}" alt=""></a>
+                <a href="#"><img src="{% static 'front/assets/images/social/youtube.png' %}" alt=""></a>
+            </div>
+            <div class="col-12 col-sm-6 text-sm-end pt-2 pt-sm-0">
+                <span>کلیه حقوق و مادی معنوی محفوط است.</span>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Copyright -->
+
+<!-- Scripts -->
+<script src="{% static 'front/assets/js/jquery.min.js' %}"></script>
+<script src="{% static 'front/assets/js/bootstrap.bundle.min.js' %}"></script>
+<script src="{% static 'front/assets/plugins/fontawesome/js/all.min.js' %}"></script>
+<script src="{% static 'front/assets/plugins/aos-master/dist/aos.js' %}"></script>
+<script src="{% static 'front/assets/js/droopmenu.js' %}"></script>
+<script src="{% static 'front/assets/js/nouislider.min.js' %}"></script>
+<script src="{% static 'front/assets/js/pagination.js' %}"></script>
+<script src="{% static 'front/assets/js/scripts.js' %}"></script>
+<!-- /Scripts -->
+</body>
+</html>

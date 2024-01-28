@@ -1,0 +1,149 @@
+{% load static %}
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>قالب فروشگاهی روبیک مارکت</title>
+    <!-- CSS Styles -->
+    <link rel="stylesheet" href="{% static 'front/assets/css/bootstrap.rtl.min.css' %}">
+    <link rel="stylesheet" href="{% static 'front/assets/plugins/fontawesome/css/all.min.css' %}">
+    <link rel="stylesheet" href="{% static 'front/assets/plugins/aos-master/dist/aos.css' %}">
+    <link rel="stylesheet" href="{% static 'front/assets/plugins/hover-master/css/hover-min.css' %}">
+    <link rel="stylesheet" href="{% static 'front/assets/css/ionicons.css' %}">
+    <link rel="stylesheet" href="{% static 'front/assets/css/droopmenu.css' %}">
+    <link rel="stylesheet" href="{% static 'front/assets/css/highlight.css' %}">
+    <link rel="stylesheet" href="{% static 'front/assets/css/nouislider.min.css' %}">
+    <link rel="stylesheet" href="{% static 'front/assets/css/style.css' %}">
+    <!-- /CSS Styles -->
+</head>
+<body>
+<!-- Header -->
+<section id="header">
+    <!-- Top NavBar -->
+    {% block topheader %}
+    {% include 'front/top_header.html' %}
+    {% endblock topheader %}
+    <!-- /Top NavBar -->
+    <!-- Search NavBar -->
+    {% block searchnav %}
+    {% include 'front/searchnav.html' %}
+    {% endblock searchnav %}
+    <!-- /Search NavBar -->
+    <!-- Main NavBar -->
+    {% block mainheader %}
+    {% include 'front/mainmenu.html' %}
+    {% endblock mainheader %}
+    <!-- Main NavBar -->
+</section>
+<!-- /Header -->
+
+<section class="inner-page" id="contact-page">
+    <div class="container-fluid" id="page-hero">
+        <div class="row">
+            <div class="col-12">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12 px-0">
+                            <h1>درباره ما</h1>
+                            <p>با ما بیشتر آشنا شوید.</p>
+                            <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="{% url 'BASE_app:Home' %}">صفحه نخست</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page">درباره ما</li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="content">
+                    <div class="row">
+                        <div class="col-12 col-lg-7">
+                            <div class="title"> {{data.title}}</div>
+                        {{data.text|safe}}
+                        </div>
+                        <div class="col-12 col-lg-5 align-self-center h-100">
+                            <img width="300px" height="300px" src="{{data.picture.url}}" alt="">
+                        </div>
+                    </div>
+                    <!-- Team -->
+                    <div class="row pt-5">
+                        <div class="col-12 text-center pt-4 pb-3">
+                            <h2 class="center-title">تیم ما</h2>
+                            <span class="sub-title">با تیم ما بیشتر آشنا شوید.</span>
+                        </div>
+                        {% for i in info_team %}
+                        <div class="col-12 col-sm-6 col-lg-3">
+                            <!-- Person Box -->
+                            <figure class="team-person">
+                                <div class="profile-image"><img  width="100px" height="300" src="{{i.picture.url}}" alt="sample47" /></div>
+                                <figcaption>
+                                    <h3> {{i.full_name}}</h3>
+                                    <h4> {{i.positions}}</h4>
+                                    <p> {{i.text}} </p>
+                                    <div class="icons"><a href="#"><i class="ion-social-reddit"></i></a>
+                                        <a href="#"> <i class="ion-social-twitter"></i></a>
+                                        <a href="#"> <i class="ion-social-vimeo"></i></a>
+                                    </div>
+                                </figcaption>
+                            </figure>
+                            <!-- /Person Box -->
+                        </div>
+                        {% endfor %}
+                        
+                        
+                        
+                    </div>
+                    <!-- Team -->
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+    {% block footer %}
+    {% include 'front/footer.html' %}
+    {% endblock footer %}
+<!-- /Footer -->
+
+<!-- Copyright -->
+<section class="py-2" id="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-sm-6" id="social-links">
+                <span>ما را دنبال کنید</span>
+                <a href="#"><img src="{% static 'front/assets/images/social/insta.png' %}" alt=""></a>
+                <a href="#"><img src="{% static 'front/assets/images/social/facebook.png' %}" alt=""></a>
+                <a href="#"><img src="{% static 'front/assets/images/social/linkedin.png' %}" alt=""></a>
+                <a href="#"><img src="{% static 'front/assets/images/social/twitter.png' %}" alt=""></a>
+                <a href="#"><img src="{% static 'front/assets/images/social/youtube.png' %}" alt=""></a>
+            </div>
+            <div class="col-12 col-sm-6 text-sm-end pt-2 pt-sm-0">
+                <span>کلیه حقوق و مادی معنوی محفوط است.</span>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Copyright -->
+
+<!-- Scripts -->
+<script src="{% static 'front/assets/js/jquery.min.js' %}"></script>
+<script src="{% static 'front/assets/js/bootstrap.bundle.min.js' %}"></script>
+<script src="{% static 'front/assets/plugins/fontawesome/js/all.min.js' %}"></script>
+<script src="{% static 'front/assets/plugins/aos-master/dist/aos.js' %}"></script>
+<script src="{% static 'front/assets/js/droopmenu.js' %}"></script>
+<script src="{% static 'front/assets/js/nouislider.min.js' %}"></script>
+<script src="{% static 'front/assets/js/pagination.js' %}"></script>
+<script src="{% static 'front/assets/js/scripts.js' %}"></script>
+<!-- /Scripts -->
+</body>
+</html>

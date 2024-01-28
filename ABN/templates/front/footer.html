@@ -1,0 +1,62 @@
+{% load static %}
+<section class="pt-4 pb-3" id="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-6 col-sm-4 col-lg-2">
+                <div class="title">دسترسی سریع</div>
+                <ul>
+                    <li><a href="{% url 'BLOG:Show_Blog' %}">بلاگ آموزشی</a></li>
+                    <li><a href="">راهنمای خرید</a></li>
+                    <li><a href="">شیوه های پرداخت</a></li>
+                    <li><a href="">پیگیری سفارش</a></li>
+                    <li><a href="{% url 'BASE_app:FAQ_View' %}">سوالات متداول</a></li>
+                    <li><a href="{% url 'BASE_app:about_us' %}">درباره ما</a></li>
+                    <li><a href="{% url 'contact_us:Conatc_Us_View' %}">تماس با ما</a></li>
+                </ul>
+            </div>
+            <div class="col-6 col-sm-4 col-lg-2">
+                <div class="title">گروه های محصولات</div>
+                <ul>
+                    {% for i in Product_Category %}
+                    <li><a href="{% url 'PRODUCT:show_product_base_category' i.slug %}"> {{i.name}} </a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="col-6 col-sm-4 col-lg-2 d-none d-sm-inline-block">
+                <div class="title">ناحیه کاربری</div>
+                <ul>
+                    <li><a href="./login.html">ورود به سایت</a></li>
+                    <li><a href="./register.html">عضویت در سایت</a></li>
+                    <li><a href="./reset-password.html">بازیابی رمز عبور</a></li>
+                    <li><a href="./cart.html">سبد خرید</a></li>
+                    <li><a href="./checkout.html">پیش فاکتور</a></li>
+                </ul>
+            </div>
+            <div class="col-12 col-md-12 col-lg-6">
+                <hr class="d-lg-none">
+                <img width="150px" height="150px" src="{% static 'front/assets/images/editlogo.png' %}" alt="آبنوش پمپ">  آبنوش پمپ
+                <p>آبنوش پمپ - الکترو موتور - بوستر پمپ</p>
+                <div class="row">
+                    <div class="col-12 col-md-6 text-center p-2" id="support-info">
+                        <div>7 روز هفته، 24 ساعت شبانه روز</div>
+                        <div>پاسخگوی شما هستیم</div>
+                        <div>09120985863 - 02191035063  </div>
+                    </div>
+                    <div class="col-12 col-md-6 pt-2 pt-md-0" id="certificates">
+                        <div class="row">
+                            <div class="col-4 text-center">
+                                <a href="#"><img src="{% static 'front/assets/images/certificates/enamad.png' %}" alt=""></a>
+                            </div>
+                            <div class="col-4 text-center">
+                                <a href="#"><img src="{% static 'front/assets/images/certificates/samandehi.png' %}" alt=""></a>
+                            </div>
+                            <div class="col-4 text-center">
+                                <a href="#"><img src="{% static 'front/assets/images/certificates/etehadiye.png' %}" alt=""></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
